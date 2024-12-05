@@ -4,7 +4,7 @@ HEADER_SIZE = 12
 
 class RtpPacket:
 	header = bytearray(HEADER_SIZE)
-
+	#switch to self.header
 	def __init__(self):
 		pass
 
