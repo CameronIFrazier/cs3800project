@@ -154,7 +154,7 @@ class Client:
 			self.rtspSeq = 1
 			# Write the RTSP request to be sent.
 			# request = requestCode + movie file name + RTSP sequence number + Type of RTSP/Type of RTP + RTP port
-			request = f"SETUP {self.fileName} RTSP/1.0\nCSeq: {self.rtspSeq}\nTransport: RTP/UDP; client_port={self.rtpPort}"
+			request = f"SETUP {self.fileName} RTSP/1.0\nCSeq: {self.rtspSeq}\nTransport: RTP/UDP; client_port= {self.rtpPort}"
 			self.rtspSocket.send(request.encode())
 			# Keep track of the sent request.
 			# self.requestSent = SETUP
@@ -200,7 +200,7 @@ class Client:
 		else:
 			return
 
-		print(f'\nData sent:\n{request}')
+		print('\nData sent:\n' + request)
 
 	def recvRtspReply(self):
 		"""Receive RTSP reply from the server."""
@@ -265,16 +265,16 @@ class Client:
 
 		# Set the timeout value of the socket to 0.5sec
 		# ...
-		self.rtpSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		self.rtpSocket.settimeout(0.5)
+		
 
 		try:
 			# Bind the socket to the address using the RTP port given by the client user
 			# ...
-			self.rtpSocket.bind((self.serverAddr, self.rtpPort))
-			print(f"RTP socket bound to {self.serverAddr}:{self.rtpPort}")
+			self.rtpSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+			self.rtpSocket.settimeout(0.5)
+			self.rtpSocket.bind(("", self.rtpPort))
 		except:
-			tkMessageBox.showwarning('Unable to Bind', f'Unable to bind PORT={self.rtpPort}\nError: {e}')
+			tkinter.messagebox.showwarning('Unable to Bind', f"Unable to bind PORT={self.rtpPort}\nError: {str(e)}")
 
 	def handler(self):
 		"""Handler on explicitly closing the GUI window."""
