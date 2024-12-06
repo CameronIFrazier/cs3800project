@@ -108,6 +108,7 @@ class ServerWorker:
 			
 			# Close the RTP socket
 			self.clientInfo['rtpSocket'].close()
+			#self.clientInfo['event'].clear()
 			
 	def sendRtp(self):
 		"""Send RTP packets over UDP."""
