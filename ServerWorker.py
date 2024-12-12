@@ -162,3 +162,4 @@ class ServerWorker:
 			print("404 NOT FOUND")
 		elif code == self.CON_ERR_500:
 			print("500 CONNECTION ERROR")
+

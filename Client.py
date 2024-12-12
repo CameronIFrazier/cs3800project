@@ -1,5 +1,6 @@
 from tkinter import *
-import tkinter.messagebox
+import tkinter.messagebox 
+from tkinter import messagebox as tkMessagebox
 from PIL import Image, ImageTk
 import socket, threading, sys, traceback, os
 
